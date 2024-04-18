@@ -8,6 +8,7 @@ import { SiteHeader } from "@/components/site-header";
 
 import { siteConfig } from "@/config/site";
 import { SiteFooter } from "@/components/site-footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -23,28 +24,30 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
 };
-
+  
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-pt-[3.5rem]">
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          inter.variable
-        )}
-      >
-        <ThemeProviders>
-          <div className="relative flex min-h-dvh flex-col bg-background">
-            <SiteHeader />
-            <main className="flex-1">{children}</main>
-            <SiteFooter />
-          </div>
-        </ThemeProviders>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className="scroll-pt-[3.5rem]">
+        <body
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased",
+            inter.variable
+          )}
+        >
+          <ThemeProviders>
+            <div className="relative flex min-h-dvh flex-col bg-background">
+              <SiteHeader />
+              <main className="flex-1">{children}</main>
+              <SiteFooter />
+            </div>
+          </ThemeProviders>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

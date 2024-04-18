@@ -24,6 +24,24 @@ const posts = defineCollection({
 		.transform(computedFields),
 });
 
+const questions = defineCollection({
+	name: "Post",
+	pattern: "blog/**/*.mdx",
+	schema: s
+		.object({
+			slug: s.path(),
+			title: s.string().max(99),
+			description: s.string().max(999).optional(),
+			date: s.isodate(),
+			published: s.boolean().default(true),
+			tags: s.array(s.string()).optional(),
+			level: s.string(),
+			difficulty: s.string(),
+			body: s.mdx(),
+		})
+		.transform(computedFields),
+});
+
 export default defineConfig({
 	root: "content",
 	output: {

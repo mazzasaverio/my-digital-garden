@@ -1,51 +1,39 @@
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
+"use client";
+
 import Link from "next/link";
-import { buttonVariants } from "./ui/button";
-import { Icons } from "./icons";
+import { Button } from "./ui/button";
 import { MainNav } from "./main-nav";
 import { MobileNav } from "./mobile-nav";
 import ModeToggle from "./mode-toggle";
+import { UserButton } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 
 export function SiteHeader() {
+  const { isSignedIn } = useAuth();
+  console.log(isSignedIn);
   return (
     <header className="z-10 sticky top-0 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center">
+        <MobileNav />
         <MainNav />
-        <div className="flex flex-1 items-center justify-end space-x-2">
-          <nav className="flex items-center">
-            <Link
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={cn(
-                  buttonVariants({ variant: "ghost" }),
-                  "w-10 px-0 hidden sm:inline-flex"
-                )}
-              >
-                <Icons.gitHub className="h-4 w-4" />
-                <span className="sr-only">GitHub</span>
-              </div>
-            </Link>
-            <Link
-              href={siteConfig.links.twitter}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={cn(
-                  buttonVariants({ variant: "ghost" }),
-                  "w-10 px-0 hidden sm:inline-flex"
-                )}
-              >
-                <Icons.twitter className="h-4 w-4" />
-                <span className="sr-only">Twitter</span>
-              </div>
-            </Link>
+        <div className="flex flex-1 items-center justify-end space-x-4 lg:space-x-4">
+          <div className="hidden md:inline">
             <ModeToggle />
-            <MobileNav />
+          </div>
+
+          <nav className="flex items-center">
+            {isSignedIn ? (
+              <UserButton afterSignOutUrl="/" />
+            ) : (
+              <>
+                <Button size="sm" variant="outline" asChild className="mr-2">
+                  <Link href="/sign-in">Accedi</Link>
+                </Button>
+                <Button size="sm" asChild>
+                  <Link href="/sign-up">Registrati</Link>
+                </Button>
+              </>
+            )}
           </nav>
         </div>
       </div>

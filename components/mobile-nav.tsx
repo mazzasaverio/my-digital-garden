@@ -8,6 +8,7 @@ import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
 import { Icons } from "./icons";
 import { siteConfig } from "@/config/site";
+import ModeToggle from "./mode-toggle";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -20,7 +21,7 @@ export function MobileNav() {
           <span className="sr-only">Toggle Theme</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right">
+      <SheetContent side="left">
         <MobileLink
           onOpenChange={setOpen}
           href="/"
@@ -36,16 +37,9 @@ export function MobileNav() {
           <MobileLink onOpenChange={setOpen} href="/about">
             About
           </MobileLink>
-          <Link target="_blank" rel="noreferrer" href={siteConfig.links.github}>
-            GitHub
-          </Link>
-          <Link
-            target="_blank"
-            rel="noreferrer"
-            href={siteConfig.links.twitter}
-          >
-            Twitter
-          </Link>
+          <div className="flex justify-center mt-4">
+            <ModeToggle />
+          </div>
         </div>
       </SheetContent>
     </Sheet>

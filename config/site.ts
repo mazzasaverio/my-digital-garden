@@ -1,5 +1,5 @@
 export const siteConfig = {
-	name: "Saverio Mazza",
+	name: "Mazza.dev",
 	url: "https://example.com",
 	description: "Nextjs 14 digital garden using velite, tailwind and shadcn",
 	author: "Saverio Mazza",
