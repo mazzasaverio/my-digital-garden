@@ -7,6 +7,10 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
+export function absoluteUrl(path: string) {
+	return `${process.env.NEXT_PUBLIC_APP_URL}${path}`
+}
+
 export function formatDate(input: string | number): string {
 	const date = new Date(input);
 	return date.toLocaleDateString("en-US", {
@@ -46,3 +50,4 @@ export function getPostsByTagSlug(posts: Array<Post>, tag: string) {
 		return slugifiedTags.includes(tag)
 	})
 }
+
