@@ -7,10 +7,11 @@ import { MobileNav } from "./mobile-nav";
 import ModeToggle from "./mode-toggle";
 import { UserButton } from "@clerk/nextjs";
 import { useAuth } from "@clerk/nextjs";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 export function SiteHeader() {
   const { isSignedIn } = useAuth();
-  console.log(isSignedIn);
+  const proModal = useProModal();
   return (
     <header className="z-10 sticky top-0 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center">
@@ -23,7 +24,15 @@ export function SiteHeader() {
 
           <nav className="flex items-center">
             {isSignedIn ? (
-              <UserButton afterSignOutUrl="/" />
+              <>
+                <Button
+                  onClick={proModal.onOpen}
+                  className="py-2 px-4  rounded-md"
+                >
+                  Upgrade
+                </Button>
+                <UserButton afterSignOutUrl="/" />
+              </>
             ) : (
               <>
                 <Button size="sm" variant="outline" asChild className="mr-2">

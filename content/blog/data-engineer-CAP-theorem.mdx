@@ -1,0 +1,37 @@
+---
+title: "Next.js SaaS Starter Template"
+description: "A lean starter template for building a SaaS frontend using Next.js, TypeScript, Tailwind, and other modern tools."
+date: "2023-04-01"
+tags: ["code"]
+published: true
+---
+
+### Introduction to CAP Theorem
+
+The CAP theorem, also known as Brewer's theorem, is a fundamental concept in the field of distributed systems. It outlines the limitations and trade-offs between three key properties: Consistency, Availability, and Partition Tolerance. Understanding these properties helps in designing systems that can handle different types of failures and user expectations.
+
+### Understanding the Three Properties
+
+- **Consistency**: This property ensures that all nodes see the same data at the same time. Simply put, any read operation returns the most recent write or an error if no recent write is available.
+
+- **Availability**: This property ensures that the system always processes the request and returns a response, although the response might not be the most up-to-date data. The system remains operational even if some parts fail.
+
+- **Partition Tolerance**: This property ensures that the system continues to operate despite any number of communication breakdowns between nodes in a distributed system. This is crucial because network failures are inevitable in large-scale systems.
+
+### Trade-offs Among Properties
+
+According to the CAP theorem, a distributed system can only provide two of the three CAP properties at any given time. This is a crucial consideration when designing systems because it forces a choice based on the application's requirements:
+
+- **CA (Consistency and Availability)**: Systems that prioritize these two often do so at the expense of partition tolerance. This setup is typical in traditional relational databases like MySQL or Oracle, where the focus is on maintaining consistency and availability as long as the network is stable.
+
+- **CP (Consistency and Partition Tolerance)**: These systems maintain consistency and can handle partitions but may sacrifice availability. For example, certain configurations of databases like MongoDB or Redis prioritize consistency over availability, ensuring that all nodes show the same data at the expense of being unavailable during certain types of network partitions.
+
+- **AP (Availability and Partition Tolerance)**: Systems like Apache Cassandra operate under this model. They maintain availability and can handle network partitions but may serve stale data. The system remains operational and accessible, but the data may not be consistent across all nodes at all times.
+
+### Practical Implications and Decisions
+
+The choice between consistency, availability, and partition tolerance often depends on the specific needs of the application. For instance, a banking system might prioritize consistency over availability to prevent errors like double withdrawals, whereas a social media platform might prioritize availability to ensure that users can always post content even if some data might be outdated.
+
+### Conclusion
+
+The CAP theorem does not dictate a one-size-fits-all solution but rather provides a framework to understand the trade-offs in distributed system design. By knowing the limitations and strengths of each CAP property, system designers can make more informed decisions that align with business needs and user expectations.

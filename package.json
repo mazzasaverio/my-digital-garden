@@ -11,6 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "^4.29.12",
     "@hookform/resolvers": "^3.3.4",
+    "@prisma/client": "^5.12.1",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
@@ -25,6 +26,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.2",
+    "stripe": "^15.3.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "velite": "^0.1.0-beta.13",
@@ -40,6 +42,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
     "postcss": "^8",
+    "prisma": "^5.12.1",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-pretty-code": "^0.13.1",
     "rehype-slug": "^6.0.0",

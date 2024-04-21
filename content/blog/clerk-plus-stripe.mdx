@@ -124,73 +124,6 @@ Go to the middleware and add `publicRoutes: ["/"]`.
     if (process.env.NODE_ENV !== "production") globalThis.prisma = db;
     ```
 
-### Pro Modal
-
-npm i zustand
-
-use-pro-modal.ts
-
-import { create } from "zustand";
-
-interface useProModalStore {
-isOpen: boolean;
-onOpen: () => void;
-onClose: () => void;
-}
-
-export const useProModal =
-  create <
-  useProModalStore >
-  ((set) => ({
-    isOpen: false,
-    onOpen: () => set({ isOpen: true }),
-    onClose: () => set({ isOpen: false }),
-  }));
-
-
-components/modals/pro-modal.tsx
-
-
-
-"use client";
-
-export const ProModal = () => {
-  return <div>ProModal</div>;
-};
-
-
-components/providers/modal-provider.tsx
-
-
-
-"use client";
-
-import { useEffect, useState } from "react";
-
-import { ProModal } from "@/components/modals/pro-modal";
-
-export const ModalProvider = () => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return null;
-  }
-
-  return (
-    <>
-      <ProModal />
-    </>
-  );
-};
-
-andiamo in app/layout.tsx
-
-
-
 ### Stripe Integration
 
 Let's proceed with integrating Stripe into our Next.js SaaS starter project.
@@ -201,7 +134,11 @@ First, install the Stripe package:
 npm install stripe
 ```
 
-Next, navigate to the Stripe website and create a new account. Once you have done that, click on "Developers" to find your API keys. Make sure to note down the secret key and add it to your `.env` file under the variable `STRIPE_API_KEY`.
+Next, navigate to the Stripe website and create a new account.
+
+Once you have done that, click on "Developers" to find your API keys.
+
+Make sure to note down the secret key and add it to your `.env` file under the variable `STRIPE_API_KEY`.
 
 Now, we'll create a `lib/stripe.ts` file to instantiate the Stripe object with our API key. Ensure that you replace `process.env.STRIPE_API_KEY` with your actual Stripe API key.
 
